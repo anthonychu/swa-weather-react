@@ -93,7 +93,11 @@ const useApiWeather = (options) => {
         payload,
       });
     } catch (error) {
-      console.error(error.message);
+      console.log(error);
+      if (error && error.response && error.response.status === 401) {
+        window.location.href = '/.auth/login/github';
+        return;
+      }
       dispatch({ type: FAILURE, payload: error.message || error });
     }
     setIsLoading(false);
