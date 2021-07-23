@@ -67,7 +67,7 @@ const useApiWeather = (options) => {
   const [state, dispatch] = useReducer(fetchReducer, initialState);
   const { data, errorMessage } = state;
   const [isLoading, setIsLoading] = useState(false);
-  const { lang, key, lon, lat } = options;
+  const { lang, lon, lat } = options;
 
   const fetchData = async () => {
     const params = {};
@@ -102,9 +102,12 @@ const useApiWeather = (options) => {
     }
     setIsLoading(false);
   };
+  // eslint-disable-next-line
   useEffect(() => {
     fetchData();
-  }, [lon, lat]);
+  },
+  // eslint-disable-next-line
+  [lon, lat]);
   return { data, isLoading, errorMessage, fetchData };
 };
 
