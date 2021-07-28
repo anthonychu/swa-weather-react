@@ -3,12 +3,31 @@ import ReactWeather from 'react-open-weather';
 import { useApiWeather } from './apiWeatherProvider';
 
 function App() {
-
-  const { data, isLoading, errorMessage } = useApiWeather({
+  const weatherParams = {
     key: '',
     lang: 'en',
     unit: 'metric', // values are (metric, standard, imperial),
-  });
+  };
+
+  const useMyLocation = window.location.href.endsWith('mylocation');
+  
+  if (!useMyLocation) {
+    weatherParams.lat = '49.2833329';
+    weatherParams.lon = '-123.1200278';
+  }
+
+  let { data, isLoading, errorMessage } = useApiWeather(weatherParams);
+
+  const myLocationLink = useMyLocation ? <div></div> : 
+  <div class="my-location-link">
+    <a onClick={handleClick} style={{cursor: 'pointer'}}>Use my location</a>
+  </div>;
+
+  const location = useMyLocation ? 'Current location' : 'Vancouver, BC';
+
+  function handleClick() {
+    window.location.href = '/mylocation';
+  }
 
   return (
     <div className="App">
@@ -17,10 +36,11 @@ function App() {
         errorMessage={errorMessage}
         data={data}
         lang="en"
-        locationLabel="Current Location"
+        locationLabel={location}
         unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
         showForecast
       />
+      {myLocationLink}
       <h1>{errorMessage}</h1>
     </div>
   );
