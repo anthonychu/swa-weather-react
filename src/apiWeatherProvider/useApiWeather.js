@@ -78,7 +78,7 @@ const useApiWeather = (options) => {
       params.coordinates = `${lat},${lon}`;
     }
   
-    setIsLoading(true);
+    //setIsLoading(true);
     try {
       const forecastResponse = await axios.get('/api/weather', { params });
       const forecastResponseData = forecastResponse.data;
