@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.my-location-link {
+  margin-top: 12px;
+  color: #0070f3;
+}
