@@ -40,7 +40,7 @@ function App() {
         unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
         showForecast
       />
-      {myLocationLink}
+      {isLoading ? <div></div> : myLocationLink}
       <h1>{errorMessage}</h1>
     </div>
   );
