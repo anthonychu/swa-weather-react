@@ -11,7 +11,7 @@ function App() {
 
   const useMyLocation = window.location.href.endsWith('mylocation');
   
-  if (!useMyLocation) {
+  if (!useMyLocation || window.location.hostname === 'localhost') {
     weatherParams.lat = '49.2833329';
     weatherParams.lon = '-123.1200278';
   }
